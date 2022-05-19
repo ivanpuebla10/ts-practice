@@ -47,3 +47,6 @@ const user1 = {
 };
 //Type Assertion
 //two ways
+let cid = 1;
+// let costumerId = <number>cid // I'm setting costumerId to cid but as a diferent type(number)}
+let costumerId = cid; // other way

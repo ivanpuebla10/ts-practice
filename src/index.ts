@@ -70,3 +70,93 @@ let cid: any = 1
 // let costumerId = <number>cid // I'm setting costumerId to cid but as a diferent type(number)}
 let costumerId = cid as number // other way
 
+//Functions
+function addNum (x: number, y: number): number {
+    return x + y
+}
+
+//Void
+function log (message: string | number) {
+    console.log(message)
+}
+
+//Interfaces
+interface UserInterface {
+    readonly id: number, //read-only property
+    name: string,
+    age?: number //the ? allows me to not neccesarly set it to a valor in user2(optional property)
+}
+
+const user2: UserInterface = {
+    id: 1,
+    name: "John"
+}
+
+interface MathFunc {
+    (x: number, y: number): number
+}
+
+const add: MathFunc = (x: number, y: number): number => x + y
+const sub: MathFunc = (x: number, y: number): number => x - y
+
+interface PersonInterface {
+    id: number
+    name: string
+    register(): string
+}
+
+class Person1 implements PersonInterface {
+    id: number 
+    name: string 
+    constructor (id: number, name: string) {
+        this.id = id,
+        this.name = name
+    }
+    
+    register () {
+        return `${this.name} is now registered`
+    }
+}
+//Classes
+class Person {
+    private id: number //this property is only accessible within the class(I cannot console it nor change it)
+    protected name: string // this property is only accessible within the class or from any class that is extended from this class
+//the property is public by default
+    constructor (id: number, name: string) {
+        this.id = id,
+        this.name = name
+    }
+    
+    register () {
+        return `${this.name} is now registered`
+    }
+}
+
+const Brad = new Person(1,"Brad")
+
+//Subclasses
+class Employee extends Person {
+    position: string
+    constructor(id: number, name: string, position: string) {
+        super(id,name)
+        this.position = position
+    }
+}
+
+const emp = new Employee (1,"John", "developer")
+
+//Generics (usted to build reusable components)
+
+// function getArray (items: any[]): any[] {
+//     return new Array().concat(items)
+// }
+
+// let numArray = getArray([1,2,3,4])
+// let stringArray = getArray(["Brad","John","Jill"])
+
+function getArray<T> (items: T[]): T[] {
+    return new Array().concat(items)
+}
+
+let numArray = getArray<number>([1,2,3,4])
+let stringArray = getArray<string>(["Brad","John","Jill"])
